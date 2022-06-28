@@ -215,7 +215,7 @@ if (id_val.innerTEXT == "사용 가능합니다") {
                 <li>아이디는 <span style="color: red;">8자리에서 12자리</span>로 입력해주세요</li>
               </p>
               <p>
-                <li><span style="color: red;">영문과 숫자의 조합</span>으로 입력해주세요</li>
+                <li><span style="color: red;">영문과 숫자만</span> 입력해주세요</li>
               </p>
             </div>
           </div>

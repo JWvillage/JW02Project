@@ -31,8 +31,10 @@ public class DeleteController extends HttpServlet {
 			String saveFileName = qto.getSfile();
 			
 			FileUtil.deleteFile(req, "/Uploads", saveFileName);
+			JSFunction.alertLocation(resp, "삭제되었습니다.", "./board");
+		} else {
+			JSFunction.alertBack(resp, "삭제되지 않았습니다.");
 		}
 		
-		JSFunction.alertLocation(resp, "삭제되었습니다.", "./board");
 	}
 }

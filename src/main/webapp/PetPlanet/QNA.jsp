@@ -243,7 +243,7 @@ $().ready(function () {
 						<div style="margin-top: 50px; display: flex; justify-content: space-between;">
 						<c:if test="${ not empty qto.ofile }">
 						<div style="display: flex; justify-content: flex-start;">
-							<img src="../Uploads/${ qto.sfile }" alt="" width="200px"/>
+							<img src="../Uploads/${ qto.sfile }" alt="" width="200px" />
 							<a href="./download?ofile=${ qto.ofile }&sfile=${ qto.sfile }&num=${ qto.num }" style="padding-top: 150px">
 								<img src="./image/download.png" alt="이미지" width="20px"/>
 							</a>

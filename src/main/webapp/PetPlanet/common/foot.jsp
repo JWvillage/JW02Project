@@ -33,7 +33,7 @@
       <div style="display: flex; justify-content: space-between;">
         <div style="display: flex; flex-direction: column; margin-top: 55px; margin-right: 100px">
           <p style="font-size: 15px; color: #383C38; font-weight: 600;">펫플래닛 서비스</p>
-          <p style="font-size: 13px; margin-top: 32px;">서비스 소개</p>
+          <a href="/J03Project/PetPlanet/introduction.jsp" style="font-size: 13px; margin-top: 32px;">서비스 소개</a>
           <a href="/J03Project/PetPlanet/board" style="font-size: 13px; margin-top: 19px; ">질문과 답변</a>
           <p style="font-size: 13px; margin-top: 19px;">채팅 상담</p>
           <a href="" style="font-size: 13px; margin-top: 19px;">안전 보상 제도</a>
@@ -42,7 +42,7 @@
         <div style="display: flex; flex-direction: column; margin-top: 55px; margin-right: 100px; height: 228px;">
           <p style="font-size: 15px; color: #383C38; font-weight: 600;">회사에 대하여</p>
           <a href="" style="font-size: 13px; margin-top: 32px;">펫피플 컴퍼니</a>
-          <a href="recruit.jsp" style="font-size: 13px; margin-top: 19px;">채용 공고</a>
+          <a href="" style="font-size: 13px; margin-top: 19px;">채용 공고</a>
           <a href="" style="font-size: 13px; margin-top: 19px;">비즈니스 제휴</a>
         </div>
         <div style="display: flex; flex-direction: column; margin-top: 55px; margin-right: 28px; height: 228px;">
