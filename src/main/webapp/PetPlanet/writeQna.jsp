@@ -87,12 +87,18 @@ function checkForm(fm) {
 		fm.content.focus();
 		return false;
 	}
-}co
+}
 </script>
 </head>
 <body>
 <jsp:include page="./common/header.jsp" />
-
+<style>
+input#ofile-button{
+	border: 0;
+	outline: 0;
+	
+}
+</style>
 <!-- Q&A -->
 <form action="./writeQNA" method="post" enctype="multipart/form-data" onsubmit="return checkForm(this);">
 	<div id="Q&A" style="display: flex; justify-content: center;">
@@ -104,10 +110,7 @@ function checkForm(fm) {
 				<textarea id="content" name="content" placeholder="내용을 입력하세요." style="outline: none; margin-top: 20px; padding: 0 12px" onkeydown="resize(this)"></textarea>
 				<div style="display: flex; justify-content: space-between; padding: 0 15px">
 					<div>
-						<input type="file" name="ofile"/>
-					</div>
-			        <div style="width: 80px; height:30px; text-align:center; padding-top:5px; border: 1px solid #81A3F0; border-radius: 18px; background-color: #81A3F0">
-						<a type="reset" href="" style=" color: white; font-weight: bold;">다시쓰기</a>
+						<input type="file" multiple id="ofile" name="ofile" />
 					</div>
 				</div>
 			</div>

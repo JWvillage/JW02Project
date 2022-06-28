@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import utils.CookieManager;
 import utils.JSFunction;
 
 @WebServlet("/PetPlanet/Login")
@@ -21,7 +22,7 @@ public class LoginController extends HttpServlet{
 		
 		String userId = req.getParameter("id");
 		String userPw = req.getParameter("password");
-		
+		String save_check = req.getParameter("save_check");
 		MemberDAO dao = new MemberDAO();
 		
 		MemberDTO dto = new MemberDTO();
@@ -34,6 +35,13 @@ public class LoginController extends HttpServlet{
 			System.out.println("로그인 성공");
 			session.setAttribute("u_id", dto.getId());
 			session.setAttribute("u_name", dto.getName());
+			if (save_check != null && save_check.equals("Y")) {
+				// 쿠키 생성. 쿠키값은 로그인 아이디, 유효기간은 1일로 설정
+				CookieManager.makeCookie(resp, "loginId", userId, 86400);
+			} else {
+				// 체크를 해제한 경우에는 쿠키 삭제.
+				CookieManager.deleteCookie(resp, "loginId");
+			}
 			
 			resp.sendRedirect(req.getHeader("referer"));
 		} else {

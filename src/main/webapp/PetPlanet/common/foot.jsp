@@ -42,7 +42,7 @@
         <div style="display: flex; flex-direction: column; margin-top: 55px; margin-right: 100px; height: 228px;">
           <p style="font-size: 15px; color: #383C38; font-weight: 600;">회사에 대하여</p>
           <a href="" style="font-size: 13px; margin-top: 32px;">펫피플 컴퍼니</a>
-          <a href="" style="font-size: 13px; margin-top: 19px;">채용 공고</a>
+          <a href="recruit.jsp" style="font-size: 13px; margin-top: 19px;">채용 공고</a>
           <a href="" style="font-size: 13px; margin-top: 19px;">비즈니스 제휴</a>
         </div>
         <div style="display: flex; flex-direction: column; margin-top: 55px; margin-right: 28px; height: 228px;">

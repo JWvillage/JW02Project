@@ -65,4 +65,10 @@
 		<param-name>maxPostSize</param-name>
 		<param-value>1024000000</param-value>
 	</context-param>
+	
+	<context-param>
+      <param-name>CHAT_ADDR</param-name>
+      <param-value>ws://192.168.219.119:8088/J03Project</param-value>
+	</context-param>
+	
 </web-app>

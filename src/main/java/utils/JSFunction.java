@@ -95,19 +95,15 @@ public class JSFunction {
         catch (Exception e) {}
     }
     
-    public static void alertLogin(HttpServletResponse resp, String id, String msg) {
+    public static void url(HttpServletResponse resp, String url) {
     	try {
     		
     		resp.setContentType("text/html; charset=UTF-8");
     		PrintWriter writer = resp.getWriter();
     		
-//    		resp.sendRedirect("./main.jsp");
     		String script = ""
     				+ "<script>"
-//    				+ "    alert('" + msg + "');"
-//    				+ "    history.back();"
-    				+ "    var check = document.getElementById(\"" + id + "\");"
-    				+ "    check.style.innerHTML = \"" + msg + "\";"
+    				+ "    window.open(" + url + ");"
     				+ "</script>";
     		writer.print(script);
     	}

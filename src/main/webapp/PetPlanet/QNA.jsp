@@ -104,11 +104,6 @@
 <script>
 $(function(){
 	
-	$.ajaxSetup({
-		
-		type : "GET"
-	})
-	
 	$('button[name=like]').click(function(){
 
 		$.ajax({
@@ -119,51 +114,40 @@ $(function(){
 			
 			data : {
 				num : '${ qto.num }',
-				id : '${ sessionScope.u_id }'
+				id : '${ sessionScope.u_id }',
+				like_check : $('#like_check').val()
 			},
-			
-			success : likePlus,
-			
-			error : err,
-		});
-	});
-	
-	$('button[name=hate]').click(function(){
 
-		$.ajax({
-			
-			url : "./hate",
-			
-			type : "GET",
-			
-			data : {
-				num : '${ qto.num }',
-				id : '${ sessionScope.u_id }'
+			success : function () {
+				
+				if($('#like_check').val()==0){
+					console.log("plus");
+					$('#like_check').val('1');
+					$('#like_img').attr('src', "./image/like_icon.png");
+					var val01 = $('#like_num').val();
+					var val02 = parseInt(val01) + 1;
+					$('#like_num').val(val02);
+					
+					if($('#like_id').val() == '') {
+						$('#like_id').val('${ sessionScope.u_id }');
+					}
+				}
+				else{
+					console.log("minus");
+					$('#like_check').val('0');
+					$('#like_img').attr('src', "./image/like_icon2.png");
+					var val01 = $('#like_num').val();
+					var val02 = parseInt(val01) - 1;
+					$('#like_num').val(val02);
+				}
 			},
 			
-			success : likeMinus,
-			
-			error : err,
-			
+			error : function () {
+				console.log("실패");
+			},
 		});
 	});
-	
 });
-
-function likePlus () {
-	console.log("plus");
-	$('#like_img').attr('src', "./image/like_icon.png");
-}
-	
-function likeMinus () {
-	console.log("minus");
-	$('#like_img').attr('src', "./image/like_icon2.png");
-}
-
-function err () {
-	console.log("실패");
-}
-
 </script>
 <!-- confirm 창 꾸미기 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -231,22 +215,27 @@ $().ready(function () {
 									<pre id="content" name="content" style="outline: none; margin-top: 20px; padding: 0 12px; font-family: 'BM JUA_TTF';">${ qto.content }</pre>
 					  			</div>
 								<div style="display: flex; justify-content: flex-end; align-items: center;">
-									<p style="margin-top: 20px; font-family: 'BM JUA_TTF';">
+									<p style="margin-top: 20px; font-family: 'BM JUA_TTF'; display: flex; justify-content: center">
+									<!-- 로그인 상태 -->
 									<c:if test="${ not empty sessionScope.u_id }" var="result1">
-										<input type="hidden" id="like_id" name="like_id" value="${ sessionScope.id }"/>
-										<input type="hidden" id="like_num" name="like_num" value="${ sessionScope.num }"/>
-										<input type="hidden" id="num" name="num" value="${ qto.num }"/>
-										<c:if test="${ sessionScope.likeCheck eq 1 && sessionScope.num eq qto.num}">
-											<button type="button" id="hate" name="hate"><img id="like_img" src="./image/like_icon.png" alt="" width="20px" style="margin-bottom: 20px"/></button>
-										</c:if>
-										<c:if test="${ sessionScope.likeCheck eq 0 || sessionScope.likeCheck eq null || sessionScope.num ne qto.num }">
-											<button type="button" id="like" name="like"><img id="like_img" src="./image/like_icon2.png" alt="" width="20px" style="margin-bottom: 20px"/></button>
-										</c:if>
+											<input type="hidden" id="like_id" name="like_id" value="${ lto.id }"/>
+											<input type="hidden" id="num" name="num" value="${ lto.num }" />
+											<input type="hidden" id="like_check" name="like_check" value="${ lto.like_check }"/>
+											<input type="hidden" value="${ qto.num }"/>
+											<button type="button" id="like" name="like">
+											<c:if test="${ lto.like_check eq 0 }" var="like">
+												<img id="like_img" src="./image/like_icon2.png" alt="" width="20px" style="margin-bottom: 20px"/>
+											</c:if>
+											<c:if test="${ lto.like_check eq 1 }">
+												<img id="like_img" src="./image/like_icon.png" alt="" width="20px" style="margin-bottom: 20px"/>
+											</c:if>
+											</button>
 									</c:if>
+									<!-- 비 로그인 상태 -->
 									<c:if test="${ not result1 }">
 										<img src="./image/like_icon.png" alt="좋아요" width="20px" style="padding-bottom: 20px" />
 									</c:if>
-										<p style="margin-right: 20px">${ qto.likecount }</p>
+										<input type="text" id="like_num" style="width: 20px; height: 20px; border: 0" value="${ qto.likecount }"/>
 									</p>
 								</div>
 					  		</div>

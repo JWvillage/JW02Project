@@ -19,40 +19,41 @@ public class hateController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		QNAboardDAO qao = new QNAboardDAO();
-		
 		String num = req.getParameter("num");
 		String id = req.getParameter("id");
-		
 		qao.likeCountMinus(num);
-		
 		qao.close();
 		
-		HttpSession session = req.getSession();
+//		HttpSession session = req.getSession();
+//		
+//		session.setAttribute("likeCheck", 0);
+//		session.setAttribute("num", num);
+//		session.setAttribute("id", id);
 		
-		session.setAttribute("likeCheck", 0);
-		session.setAttribute("num", num);
-		session.setAttribute("id", id);
+		likeTableDAO lao = new likeTableDAO();
 		
-//		likeTableDAO lao = new likeTableDAO();
-//		likeTableDTO lto = new likeTableDTO();
-//		
-//		Map<String, Object> dmap = new HashMap<String, Object>();
-//		
-//		dmap.put("num", num);
-//		dmap.put("id", id);
-//		
-//		List<likeTableDTO> dt = lao.pickUp(dmap);
-//		int result = lao.likeDelete(dmap);
-//		
-//		if(result == 1) {
-//			System.out.println("like 1 감소");
-//		} else {
-//			System.out.println("like 1 감소 실패");
-//		}
-//		
-//		req.setAttribute("dmap", dmap);
-//		req.setAttribute("dt", dt);
-//		resp.sendRedirect("./QNA?num=" + num);
-//		req.getRequestDispatcher("./board.jsp").forward(req, resp);
+		Map<String, Object> dmap = new HashMap<String, Object>();
+		
+		dmap.put("num", num);
+		dmap.put("id", id);
+		
+		int result = lao.likeDelete(dmap);
+		
+		if(result == 1) {
+			System.out.println("like 1 감소");
+		} else {
+			System.out.println("like 1 감소 실패");
+			dmap.put("like_check", 0);
+			int prove = lao.likeInsert(dmap);
+			if(prove == 1) {
+				System.out.println("insert 성공");
+			} else {
+				System.out.println("insert 실패");
+			}
+		}
+		lao.close();
+		
+		req.setAttribute("dmap", dmap);
+		resp.sendRedirect("./QNA?num=" + num);
 	}
 }

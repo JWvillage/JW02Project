@@ -18,6 +18,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- ajax -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ <!-- icon -->
+  <script src="https://kit.fontawesome.com/54b3b8eebf.js" crossorigin="anonymous"></script>
 <title>PetPlanet</title>
 </head>
 <body>

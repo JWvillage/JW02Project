@@ -12,30 +12,26 @@ public class likeTableDAO extends DBConnPool {
 		super();
 	}
 	
-	public List<likeTableDTO> pickUp(Map<String, Object>map) {
+	public likeTableDTO like_pickUp(Map<String, Object>map) {
 		
-		List<likeTableDTO> lb = new ArrayList<likeTableDTO>();
+		likeTableDTO lto = new likeTableDTO();
 		
-		String query = "select * from like_table where num = ?, id = ?";
+		String query = "select * from like_table where num = ? and id = ?";
 		
 		try {
 			
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, map.get("num").toString());
-			psmt.setString(1, map.get("id").toString());
-			
+			psmt.setString(2, map.get("id").toString());
 			rs = psmt.executeQuery();
 			
 			if(rs.next()) {
-				
-				likeTableDTO lto = new likeTableDTO();
 				
 				lto.setLike_num(rs.getInt(1));
 				lto.setId(rs.getString(2));
 				lto.setNum(rs.getInt(3));
 				lto.setLike_check(rs.getInt(4));
 				
-				lb.add(lto);
 			}
 			
 		} catch (Exception e) {
@@ -43,20 +39,43 @@ public class likeTableDAO extends DBConnPool {
 			e.printStackTrace();
 		}
 		
-		return lb;
+		return lto;
+	}
+	
+	public int likeInsert(Map<String, Object> map) {
+		
+		int result = 0;
+		
+		String query = "insert into like_table values (seq_lt_num.nextval, ?, ?, ?)";
+		
+		try {
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, map.get("id").toString());
+			psmt.setString(2, map.get("num").toString());
+			psmt.setString(3, map.get("like_check").toString());
+			
+			result = psmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("like_table insert 중 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	public int likeUpdate(Map<String, Object> map) {
 		
 		int result = 0;
 		
-		String query = "update like_table set like_check = like_check + 1 where num = ?, id = ?";
+		String query = "update like_table set like_check = 1 where num = ? and id = ?";
 		
 		try {
 			
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, map.get("num").toString());
-			psmt.setString(1, map.get("id").toString());
+			psmt.setString(2, map.get("id").toString());
 			
 			result = psmt.executeUpdate();
 			
@@ -71,13 +90,13 @@ public class likeTableDAO extends DBConnPool {
 		
 		int result = 0;
 		
-		String query = "update like_table set like_check = like_check - 1 where num = ?, id = ?";
+		String query = "update like_table set like_check = 0 where num = ? and id = ?";
 		
 		try {
 			
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, map.get("num").toString());
-			psmt.setString(1, map.get("id").toString());
+			psmt.setString(2, map.get("id").toString());
 			
 			result = psmt.executeUpdate();
 			

@@ -1,6 +1,17 @@
+<%@page import="utils.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+// loginId 라는 이름의 쿠키를 읽어온다.
+String loginId = CookieManager.readCookie(request, "loginId");
+
+// 앞에서 읽어온 쿠키값이 있다면 checked 속성값을 변수에 설정한다.
+String cookieCheck = "";
+if(!loginId.equals("")) {
+	cookieCheck = "checked";
+}
+%>
 <style>
 	* {
 	  font-family: SpoqaHanSans,'BM JUA_TTF', sans-serif;
@@ -151,7 +162,7 @@
           <!-- Id -->
           <div>
             <p style="margin-left: 10px; font-size: 20px; font-weight: 600;">아이디</p>
-            <div style="width: 475px; height: 59px; display: flex; align-items: center; border: 1px solid #cccccc; margin-top: 10px; padding: 0 24px 0 17px">
+            <div style="width: 475px; height: 59px; display: flex; align-items: center; border: 1px solid #cccccc; margin-top: 10px; padding: 0 0 0 17px">
               <div>
                 <img src="/J03Project/PetPlanet/image/id_icon01.png" alt="" style="width: 35px; height: 30px;">
               </div>
@@ -161,10 +172,13 @@
                   name="id"
                   type="text"
                   placeholder="아이디를 입력하세요!"
-                  style="width: 350px; height: 52px; border: 0; margin: 0px 12px; padding: 1px 2px; outline: none;"
+                  style="width: 320px; height: 52px; border: 0; margin: 0px 12px; padding: 1px 2px; outline: none;"
                   onblur="idMessage(this.form);"
+                  value="<%= loginId %>"
                 />
               </div>
+              <input type="checkbox" name="save_check" value="Y" <%= cookieCheck %> tabindex="3" style="margin-right: 5px"/>
+              <p style="font-size: 12px; margin: 0">ID 기억</p>
             </div>
             <div style="margin-top: 5px;">
               <p><span id="id_check" style="color: skyblue"></span></p>
@@ -210,8 +224,8 @@
           <!-- search -->
           <div style="display: flex; justify-content: space-between; width: 450px; margin-top: 50px">
             <a href="/J03Project/PetPlanet/regist" style="color: black;">회원가입</a>
-            <a href="" style="color: red;">아이디 찾기</a>
-            <a href="" style="color: red;">비밀번호 찾기</a>
+            <a href="/J03Project/PetPlanet/id_Search.jsp" style="color: red;">아이디 찾기</a>
+            <a href="/J03Project/PetPlanet/pw_Search.jsp" style="color: red;">비밀번호 찾기</a>
           </div>
         </div>
       </div>
@@ -273,3 +287,6 @@
       </div>
     </div>
   </div>
+<div style="position: fixed; right: 80px; bottom: 10px; z-index: 999999;">
+	<img type="button" onclick="window.open('/J03Project/PetPlanet/MultiChatMain.jsp', '', 'width=400, height=400');" src="/J03Project/PetPlanet/image/websocket_icon.png" alt="" style="width: 80px; height: 80px"/>
+</div>

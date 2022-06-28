@@ -90,6 +90,58 @@ public class MemberDAO extends DBConnPool {
 		return dto;
 	}
 	
+	//Id_Search
+	public MemberDTO idSearch(String u_email, String u_name) {
+		
+		MemberDTO dto = new MemberDTO();
+		
+		String query = "select id from member where email = ? and name = ?";
+		
+		try {
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, u_email);
+			psmt.setString(2, u_name);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setId(rs.getString(1));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("패스워드 조회 중 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+	
+	//Pw_Search
+	public MemberDTO pwSearch(String u_id, String u_name) {
+		
+		MemberDTO dto = new MemberDTO();
+		
+		String query = "select pass from member where id = ? and name = ?";
+		
+		try {
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, u_id);
+			psmt.setString(2, u_name);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setPass(rs.getString(1));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("패스워드 조회 중 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+	
 	// member 몇 명?
 	public int memberCount() {
 		
