@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
 @WebServlet("/PetPlanet/QNA")
 public class viewController extends HttpServlet {
 
@@ -27,7 +25,6 @@ public class viewController extends HttpServlet {
 		qao.updateVisitCount(qto);
 		qao.close();
 		req.setAttribute("qto", qto);
-		
 		
 		// 로그인 되어 있다면
 		// like 정보 출력

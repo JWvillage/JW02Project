@@ -78,6 +78,12 @@
         email_check.innerHTML = "이메일을 입력하세요!"
         fm.email.focus();
         return false;
+      } else {
+    	  if(email_check.innerHTML == "이메일 형식을 지켜주세요") {
+    		  alert("이메일을 확인하세요.");
+    		  fm.email.focus();
+    		  return false;
+    	  }
       }
     }
 
@@ -103,7 +109,7 @@
           }
           if( num > 0 && upp_Alpha > 0 && low_Alpha > 0 && symbol > 0 ) {
               check.innerHTML = "사용 가능합니다";
-            check.style.color = "skyblue";
+              check.style.color = "skyblue";
               form.name.focus();
           } else {
             check.innerHTML = "영문(대소문자)/숫자/특수문자가 모두 포함되어야 합니다.";
@@ -116,6 +122,30 @@
           /* form.pass1.focus(); */
         }
       }
+    }
+    
+    function emailCheck(form) {
+    	var email_check = document.getElementById("email_check");
+    	var email_val = form.email.value;
+    	var symbol01 = 0;
+    	var symbol02 = 0;
+    	for (var i = 0; i < email_val.length; i++) {
+			if(email_val[i] == '@') {
+				symbol01++;
+				console.log("symbol01 : " + symbol01);
+			}
+			if(email_val[i] == '.') {
+				symbol02++;
+				console.log("symbol02 : " + symbol02);
+			}
+    	}
+    	
+    	if(symbol01 != 1 || symbol02 != 1) {
+    		email_check.innerHTML = "이메일 형식을 지켜주세요"
+    		email_check.style.color = "red"
+    	} else {
+    		email_check.innerHTML = '';
+    	}
     }
   </script>
 <script>
@@ -285,11 +315,12 @@ if (id_val.innerTEXT == "사용 가능합니다") {
                   type="text"
                   placeholder="이메일을 입력하세요!"
                   style="width: 350px; height: 52px; border: 0; margin: 0px 12px; padding: 1px 2px; outline: none;"
+                  onblur="emailCheck(this.form);"
                 />
               </div>
             </div>
             <div style="margin-top: 5px;">
-              <p><span id="email_check" style="color: skyblue""></span></p>
+              <p><span id="email_check" style="color: skyblue"></span></p>
               <p style="color: #4D505A">
                 예) petplanet@petplanet.com
               </p>
@@ -313,7 +344,6 @@ if (id_val.innerTEXT == "사용 가능합니다") {
     </div>
   </div>
 </form>
-<div style="margin-bottom: 100px;"></div>
 <jsp:include page="./common/foot.jsp" />
 </body>
 </html>

@@ -204,7 +204,26 @@
     }
     */
 </script>
-
+<script>
+$(function() {
+	
+	$('button[name=add_page]').click(function(){
+		$.ajax({
+			url : "./board01",
+			type : "GET",
+			data : {
+				end_num : $('#end_num').val()
+			},
+			success : function(){
+				var re_end01 = $('#end_num').val();
+				var re_end = parseInt(re_end01) + 1;
+				$('#end_num').val(re_end);
+			},
+			error : function(){console.log("실패")},
+		});
+	});
+})
+</script>
 <jsp:include page="./common/header.jsp" />
 <!-- FAQ -->
 <div style="padding-top: 100px; display: flex; justify-content: center;">
@@ -411,12 +430,17 @@
 				</c:otherwise>
 			</c:choose>
 	        </ul>
+	        <div style="display: flex; justify-content: center; background-color: #FFFFFF;">
+	        	<input type="hid-den" id="end_num" name="end_num" value="1" />
+	        	<button type="button" id="add_page" name="add_page" style="border: 0; background: none; font-size: 20px">+ 더보기</button>
+	        </div>
+	        <%-- 
 	        <!-- 페이지 번호 -->
 			<div class="row mt-3">
 		        <ul class="pagination justify-content-center">
 		        	${ map.pagingImg }
 		        </ul>
-			</div>
+			</div> --%>
 		    <%
 				if (session.getAttribute("u_id") != null) {
 			%>	

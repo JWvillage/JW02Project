@@ -182,7 +182,7 @@
         <p style="display: flex; text-align: center; font-size: 55px; font-weight: bold;">엄선된 펫시터</p>
         <p style="display: flex; text-align: center; font-size: 55px; font-weight: bold;"><span style="color: #71A7FF;">펫플래닛</span>에서 만나요!</p>
       </div>
-      <a href="" style="width: 250px; height: 70px; background-color: #71A2FF; border-radius: 7px; margin-top: 90px; color: white; display: flex; align-items: center; justify-content: center;">
+      <a href="./PetPlanet/search.jsp" style="width: 250px; height: 70px; background-color: #71A2FF; border-radius: 7px; margin-top: 90px; color: white; display: flex; align-items: center; justify-content: center;">
         <p style="font-size: 20px; margin-bottom: 0;">내 주변 펫시터 찾기</p>
       </a>
     </div>
@@ -227,7 +227,7 @@
             </p>
           </div>
           <div style="display: flex; justify-content: center;">
-            <a href="/" style="width: 150px; height: 52px; background-color: #71A2FF; border-radius: 26px; margin-bottom: 40px; color: white; display: flex; align-items: center; justify-content: center;">
+            <a href="" style="width: 150px; height: 52px; background-color: #71A2FF; border-radius: 26px; margin-bottom: 40px; color: white; display: flex; align-items: center; justify-content: center;">
               <p style="font-size: 20px; margin-bottom: 0;">예약하기</p>
             </a>
           </div>
