@@ -11,9 +11,6 @@
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit-icons.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <style>
-* {
-	font-family: 'BM JUA_TTF';
-}
 p {
 	margin-top : 0;
 }
@@ -56,14 +53,17 @@ tr{
   height: 65.5px;
   font-size: 17px;
 }
+input {
+	font-family: 'BM JUA_TTF';
+}
+
 textarea {
 	font-size: 1.2em; 
 	width: 100%; 
 	height: 300px; 
 	border: 0; 
 	font-family: 'BM JUA_TTF'; 
-	overflow: hidden; 
-	background:none; 
+	overflow: hidden;  
 	resize:none;
 	min-height: 18rem;
     overflow-y: hidden;

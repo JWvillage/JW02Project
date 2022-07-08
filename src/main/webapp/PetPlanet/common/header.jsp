@@ -291,6 +291,9 @@ if(!loginId.equals("")) {
         	<p style="padding-left: 20px; color: #81A3F0; font-weight: bold"><%=session.getAttribute("u_name")%>님</p>
         	<a id="logout" name="logout" class="header_link" href="/J03Project/PetPlanet/Logout.jsp">로그아웃</a>
         </div>
+        <div style=" border: 1px solid #81A3F0; border-radius: 25px; width: 120px; height: 50px; justify-content: center; display: flex; align-items: center;">
+        	<a class="header_link" href="" style="color: #81A3F0; font-size: 14px; font-weight: bold" >펫시터 지원</a>
+        </div>
 		<%
 			} else {
 		%>
@@ -301,14 +304,20 @@ if(!loginId.equals("")) {
         <div style="border-right: 1px solid rgb(215, 219, 226);">
           <a id="registration" name="registration" class="header_link" href="/J03Project/admin/admin.jsp">Admin Page</a>
         </div>
+        <div style=" border: 1px solid #81A3F0; border-radius: 25px; width: 120px; height: 50px; justify-content: center; display: flex; align-items: center;">
+        	<a class="header_link" href="/J03Project/PetPlanet/apply.jsp" style="color: #81A3F0; font-size: 14px; font-weight: bold" >지원자 답변</a>
+        </div>
 		<%
 			}
 		} else if ( session.getAttribute("naver_name") != null) {
 	    %>
-		    <div style="display: flex; align-items: center;">
-		    	<p style="padding-left: 20px; color: #81A3F0; font-weight: bold"><%=session.getAttribute("naver_name")%>님</p>
-		    	<a id="logout" name="logout" class="header_link" href="/J03Project/PetPlanet/Logout.jsp">로그아웃</a>
-		    </div>
+	    <div style="display: flex; align-items: center;">
+	    	<p style="padding-left: 20px; color: #81A3F0; font-weight: bold"><%=session.getAttribute("naver_name")%>님</p>
+	    	<a id="logout" name="logout" class="header_link" href="/J03Project/PetPlanet/Logout.jsp">로그아웃</a>
+	    </div>
+	    <div style=" border: 1px solid #81A3F0; border-radius: 25px; width: 120px; height: 50px; justify-content: center; display: flex; align-items: center;">
+        	<a class="header_link" href="" style="color: #81A3F0; font-size: 14px; font-weight: bold" >펫시터 지원</a>
+        </div>
 	    <% 
 		} else {
 		%>
@@ -318,12 +327,13 @@ if(!loginId.equals("")) {
         <div>
           <a id="Login" name="Login" class="header_link" href="javascript:login();">로그인</a>
         </div>
+        <div style=" border: 1px solid #81A3F0; border-radius: 25px; width: 120px; height: 50px; justify-content: center; display: flex; align-items: center;">
+        	<a class="header_link" href="" style="color: #81A3F0; font-size: 14px; font-weight: bold" >펫시터 지원</a>
+        </div>
    		<%
 		}
 		%>
-        <div style=" border: 1px solid #81A3F0; border-radius: 25px; width: 120px; height: 50px; justify-content: center; display: flex; align-items: center;">
-          <a class="header_link" href="" style="color: #81A3F0; font-size: 14px; font-weight: bold" >펫시터 지원</a>
-        </div>
+        
       </div>
     </div>
   </div>
