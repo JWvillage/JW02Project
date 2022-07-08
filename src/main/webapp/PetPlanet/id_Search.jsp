@@ -135,7 +135,7 @@
           </div>
           <!-- email -->
           <div>
-            <p style="margin-left: 10px; font-size: 20px; font-weight: 600;">아이디</p>
+            <p style="margin-left: 10px; font-size: 20px; font-weight: 600;">이메일</p>
             <div style="width: 475px; height: 59px; display: flex; align-items: center; border: 1px solid #cccccc; margin-top: 10px; padding: 0 0 0 17px">
               <div>
                 <img src="/J03Project/PetPlanet/image/id_icon01.png" alt="" style="width: 35px; height: 30px;">

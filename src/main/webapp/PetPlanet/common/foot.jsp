@@ -47,7 +47,7 @@
         </div>
         <div style="display: flex; flex-direction: column; margin-top: 55px; margin-right: 28px; height: 228px;">
           <p style="font-size: 15px; color: #383C38; font-weight: 600;">팻플래닛 계정</p>
-          <c:if test="${ sessionScope.u_id eq null }" var="result">
+          <c:if test="${ sessionScope.u_id eq null and sessionScope.naver_name eq null }" var="result">
           <a href="/J03Project/PetPlanet/regist" style="font-size: 13px; margin-top: 32px;">회원가입</a>
           <a id="Login" href="javascript:login();" style="font-size: 13px; margin-top: 19px;">로그인</a>
           </c:if>

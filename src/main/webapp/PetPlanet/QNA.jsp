@@ -114,7 +114,8 @@ $(function(){
 			
 			data : {
 				num : '${ qto.num }',
-				id : '${ sessionScope.u_id }',
+				u_id : '${ sessionScope.u_id }',
+				naver_id : '${ sessionScope.naver_id }',
 				like_check : $('#like_check').val()
 			},
 
@@ -129,7 +130,11 @@ $(function(){
 					$('#like_num').val(val02);
 					
 					if($('#like_id').val() == '') {
-						$('#like_id').val('${ sessionScope.u_id }');
+						if ('${ sessionScope.u_id }' != "") {
+							$('#like_id').val('${ sessionScope.u_id }');							
+						} else {
+							$('#like_id').val('${ sessionScope.naver_id }');
+						}
 					}
 				}
 				else{
@@ -217,7 +222,7 @@ $().ready(function () {
 								<div style="display: flex; justify-content: flex-end; align-items: center;">
 									<p style="margin-top: 20px; font-family: 'BM JUA_TTF'; display: flex; justify-content: center">
 									<!-- 로그인 상태 -->
-									<c:if test="${ not empty sessionScope.u_id }" var="result1">
+									<c:if test="${ not empty sessionScope.u_id or not empty sessionScope.naver_id }" var="result1">
 											<input type="hidden" id="like_id" name="like_id" value="${ lto.id }"/>
 											<input type="hidden" id="num" name="num" value="${ lto.num }" />
 											<input type="hidden" id="like_check" name="like_check" value="${ lto.like_check }"/>
@@ -249,7 +254,7 @@ $().ready(function () {
 							</a>
 						</div>
 						</c:if>
-						<c:if test="${ sessionScope.u_id eq qto.id }" var="result">
+						<c:if test="${ sessionScope.u_id eq qto.id or sessionScope.naver_id eq qto.id }" var="result">
 						<form style="display: flex; justify-content: flex-end;">
 						<div style="margin-top: 150px;">
 							<input type="button" onclick="location.href='./edit?num=${ qto.num }'" value="수정하기" style="border: 0; background: none; color: black; padding-right: 20px; width: 60px;" />
@@ -257,7 +262,7 @@ $().ready(function () {
 						</div>
 						</form>
 						</c:if>
-						<c:if test="${ sessionScope.u_id eq null }">
+						<c:if test="${ sessionScope.u_id eq null and sessionScope.naver_id }">
 							<a href="javascript:login();" style="color: black; width: 40px; padding-top: 150px">로그인</a>
 						</c:if>
 						</div>

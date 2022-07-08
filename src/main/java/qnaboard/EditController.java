@@ -59,7 +59,11 @@ public class EditController extends HttpServlet {
 		qto.setNum(num);
 		qto.setTitle(mr.getParameter("title"));
 		qto.setContent(mr.getParameter("content"));
-		qto.setId(session.getAttribute("u_id").toString());
+		if(session.getAttribute("u_id") != null) {
+			qto.setId(session.getAttribute("u_id").toString());			
+		} else {			
+			qto.setId(session.getAttribute("naver_id").toString());
+		}
 		
 		String fileName = mr.getFilesystemName("ofile");
 		

@@ -147,7 +147,7 @@ public class ListController extends HttpServlet{
 		map02.put("pageNum02", pageNum02);
 
 		req.setAttribute("FAQboard02", FAQboard02);
-		req.setAttribute("map02", map02);		
+		req.setAttribute("map02", map02);
 		
 		req.getRequestDispatcher("/PetPlanet/board.jsp").forward(req, resp);
 	}

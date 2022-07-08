@@ -4,6 +4,8 @@
 // 로그아웃 처리를 위한 방법
 session.removeAttribute("u_id");
 session.removeAttribute("u_name");
+session.removeAttribute("naver_name");
+session.removeAttribute("naver_email");
 
 session.invalidate();
 

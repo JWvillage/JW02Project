@@ -418,7 +418,7 @@
 		        </ul>
 			</div>
 		    <%
-				if (session.getAttribute("u_id") != null) {
+				if (session.getAttribute("u_id") != null || session.getAttribute("naver_name") != null) {
 			%>	
 		    <div style="display: flex; justify-content: right; width: 1000px; margin-top: 50px">
 		        <a href="./writeQNA" style="text-align:center;padding-top:10px; color: #81A3F0; font-weight: bold; width: 120px; height:45px; border: 1px solid #81A3F0; border-radius: 20px">작성하기</a>

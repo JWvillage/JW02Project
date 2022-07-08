@@ -15,6 +15,22 @@ if(!loginId.equals("")) {
 	cookieCheck = "checked";
 }
 %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <!-- bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <!-- ajax -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <!-- icon -->
+  <script src="https://kit.fontawesome.com/54b3b8eebf.js" crossorigin="anonymous"></script>
 <style>
 	* {
 	  font-family: SpoqaHanSans,'BM JUA_TTF', sans-serif;
@@ -66,44 +82,6 @@ if(!loginId.equals("")) {
 </style>
 
 <script>
-  /* 스크롤 내릴 때 클래스 삽입 */
-  $(window).on('scroll',function(){
-    if($(window).scrollTop()){
-        $('#header_t').addClass('active');
-    } else {
-        $('#header_t').removeClass('active');
-    }
-
-    if($(window).scrollTop()) {
-      if($(window).scrollTop() >= 300) {
-        $('.m1').addClass('show');
-      } else {
-        $('.m1').removeClass('show');
-      }
-    }
-  });
-  /* Login_Form */
-  window.onload = function() {
-    var con = document.getElementById("Login_Form");
-    var con01 = document.getElementById("Login_Form01");
-    var s_height = window.screen.height;
-    if(document.documentElement.scrollTop > s_height + 280 | document.documentElement.scrollTop < s_height - 280) {
-      con.style.display = 'none';
-    }
-  }
-
-  var clickCheck = true;
-  function login(){
-    var con = document.getElementById("Login_Form");
-    var con01 = document.getElementById("Login_Form01");
-    var s_height = window.screen.height;
-    if(con.style.display=='none') {
-      con01.style.top = document.documentElement.scrollTop + s_height / 2 - parseInt(con01.style.height) / 1.8 + 'px'
-      con.style.display = 'flex';
-    } else {
-      con.style.display = 'none';
-    }
-  }
 
   function checkLogForm(fm) {
     var id_check = document.getElementById('id_check');
@@ -140,8 +118,8 @@ if(!loginId.equals("")) {
 <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <!-- Login Form -->
 <form action="/J03Project/PetPlanet/Login" method="post" onsubmit="return checkLogForm(this);">
-  <div class="Login_Form" id="Login_Form" style="display: none; flex-direction: column; align-items: center;">
-    <div id="Login_Form01" style="border: 1px solid gray; width:1500px; height: 850px; border-radius: 30px; z-index: 99999999; position: absolute; top: 280px; left: 14.5%; box-shadow: rgba(0, 0, 0, 0.65) 0px 2px 20px;">
+  <div class="Login_Form" id="Login_Form" style="display: flex; flex-direction: column; align-items: center;">
+    <div id="Login_Form01" style="border: 1px solid gray; width:1500px; height: 850px; border-radius: 30px; z-index: 99999999; position: absolute; top: 30px; left: 14.5%; box-shadow: rgba(0, 0, 0, 0.65) 0px 2px 20px;">
       <div style="display: flex; justify-content: space-between; align-items: center; ">
         <!-- left -->
         <div style="color: white; background-color: #81A3F0; width: 50%; height: 850px; border-radius: 30px 0 0 30px; display: flex; justify-content: center; flex-direction: column; align-items: center;">
@@ -231,9 +209,9 @@ if(!loginId.equals("")) {
 			    apiURL += "&redirect_uri=" + redirectURI;
 			    apiURL += "&state=" + state;
 			    session.setAttribute("state", state);
-			 %>
-			  	<%-- <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a> --%>
-	            <a id="naverIdLogin_loginButton" href="<%=apiURL%>" style="width: 200px; height: 60px; background-color: #71A2FF; border-radius: 30px; color: white; display: flex; align-items: center; justify-content: center; border: 0">
+			%>
+			  	<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+	            <a id="naverIdLogin_loginButton" href="javascript:void(0)" style="width: 200px; height: 60px; background-color: #71A2FF; border-radius: 30px; color: white; display: flex; align-items: center; justify-content: center; border: 0">
 	              네이버 로그인
 	            </a>
 	            
@@ -241,11 +219,50 @@ if(!loginId.equals("")) {
 	              구글 로그인
 	            </button>
             </div>
+            <!-- 네이버 로그인 스크립트 -->
+<!--    			<script>
+	   		//네이버 로그인
+   			$(function(){
+   			    var naverLogin = new naver.LoginWithNaverId({
+   			        clientId: "U9I7zy8HU6FYjYNSOeBV",
+   			        callbackUrl: "http://localhost:8088/J03Project/PetPlanet/Login",
+   					naver_name : naverLogin,
+   			        isPopup: false,
+   			        callbackHandle: true
+   			    });
+   			    naverLogin.init();
+   				
+   				naverLogin.getLoginStatus(function(status) {
+   					if (status) {
+						var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
+						var name = naverLogin.user.getName(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
+			    		
+						console.log(naverLogin.user.name, naverLogin.user.email);
+						$('#naver_name').val(name);
+						$('#naver_email').val(email);
+					
+						console.log($('#naver_name').val());
+						
+			            if( email == undefined || email == null) {
+							alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+							naverLogin.reprompt();
+							return;
+						}
+			            if( name == undefined || name == null) {
+							alert("이름은 필수정보입니다. 정보제공을 동의해주세요.");
+							naverLogin.reprompt();
+							return;
+						}
+					} else {
+						console.log("callback 처리에 실패하였습니다.");
+					}
+   				})
+   			})//e.o.naver
+
+			</script> -->
           <!-- Login -->
-          	<!-- 
-          	<input type="hidden" id="naver_name" name="naver_name" />
-        	<input type="hidden" id="naver_email" name="naver_email" /> 
-        	-->
+          	<input type="hid-den" id="naver_name" name="naver_name" />
+        	<input type="hid-den" id="naver_email" name="naver_email" />
 		  <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 30px; width: 450px">
             <div>
               <p style="font-size: 30px; font-weight: bold;">로그인</p>
@@ -265,68 +282,5 @@ if(!loginId.equals("")) {
     </div>
   </div>
 </form>
-  <!-- main_header -->
-  <div class="top" id="header_t">
-    <div class="layout">
-      <div class="logo">
-        <a class="header_link" href="/J03Project/petplanet.do">
-          <img src="/J03Project/PetPlanet/image/Logo1.png" alt="">
-        </a>
-      </div>
-      <div class="container-fluid" style="display: flex; justify-content: end; align-items: center;">
-        <div style="border-right: 1px solid rgb(215, 219, 226);">
-          <a class="header_link" href="/J03Project/PetPlanet/search.jsp">펫시터 찾기</a>
-        </div>
-        <div style="border-right: 1px solid rgb(215, 219, 226);">
-          <a class="header_link" href="">이용 후기</a>
-        </div>
-        <div style="border-right: 1px solid rgb(215, 219, 226);">
-          <a class="header_link" href="">채팅 문의</a>
-        </div>
-		<%
-		if (session.getAttribute("u_id") != null) {
-			if(!session.getAttribute("u_id").equals("masterratte")) {
-		%>
-        <div style="display: flex; align-items: center;">
-        	<p style="padding-left: 20px; color: #81A3F0; font-weight: bold"><%=session.getAttribute("u_name")%>님</p>
-        	<a id="logout" name="logout" class="header_link" href="/J03Project/PetPlanet/Logout.jsp">로그아웃</a>
-        </div>
-		<%
-			} else {
-		%>
-		<div style="display: flex; align-items: center;">
-        	<p style="padding-left: 20px; color: #81A3F0; font-weight: bold"><%=session.getAttribute("u_name")%>&nbsp;&nbsp;관리자님</p>
-        	<a id="logout" name="logout" class="header_link" href="/J03Project/PetPlanet/Logout.jsp">로그아웃</a>
-        </div>
-        <div style="border-right: 1px solid rgb(215, 219, 226);">
-          <a id="registration" name="registration" class="header_link" href="/J03Project/admin/admin.jsp">Admin Page</a>
-        </div>
-		<%
-			}
-		} else if ( session.getAttribute("naver_name") != null) {
-	    %>
-		    <div style="display: flex; align-items: center;">
-		    	<p style="padding-left: 20px; color: #81A3F0; font-weight: bold"><%=session.getAttribute("naver_name")%>님</p>
-		    	<a id="logout" name="logout" class="header_link" href="/J03Project/PetPlanet/Logout.jsp">로그아웃</a>
-		    </div>
-	    <% 
-		} else {
-		%>
-        <div style="border-right: 1px solid rgb(215, 219, 226);">
-          <a id="registration" name="registration" class="header_link" href="/J03Project/PetPlanet/regist">회원가입</a>
-        </div>
-        <div>
-          <a id="Login" name="Login" class="header_link" href="javascript:login();">로그인</a>
-        </div>
-   		<%
-		}
-		%>
-        <div style=" border: 1px solid #81A3F0; border-radius: 25px; width: 120px; height: 50px; justify-content: center; display: flex; align-items: center;">
-          <a class="header_link" href="" style="color: #81A3F0; font-size: 14px; font-weight: bold" >펫시터 지원</a>
-        </div>
-      </div>
-    </div>
-  </div>
-<div style="position: fixed; right: 80px; bottom: 10px; z-index: 999999;">
-	<img type="button" onclick="window.open('/J03Project/PetPlanet/MultiChatMain.jsp', '', 'width=400, height=400');" src="/J03Project/PetPlanet/image/websocket_icon.png" alt="" style="width: 80px; height: 80px"/>
-</div>
+</body>
+</html>

@@ -30,18 +30,29 @@ public class viewController extends HttpServlet {
 		// like 정보 출력
 		HttpSession session = req.getSession();
 		// Session에 id 있는지 확인
-		if(session.getAttribute("u_id") != null) {
+		if(session.getAttribute("u_id") != null || session.getAttribute("naver_id") != null) {
 			// DB 접속
 			likeTableDAO lao = new likeTableDAO();
 			// 변수 넣을 map 생성
 			Map<String, Object> map = new HashMap<String, Object>();
 			// 입력 값 셋팅
 			map.put("num", num);
-			map.put("id", session.getAttribute("u_id"));
-			// 출력 값 담을 List 생성 및 담기
-			likeTableDTO lto = lao.like_pickUp(map);
-			lao.close();
-			req.setAttribute("lto", lto);
+			if(session.getAttribute("u_id") != null) {
+				map.put("id", session.getAttribute("u_id"));
+				System.out.println(map.get("id"));
+				// 출력 값 담을 List 생성 및 담기
+				likeTableDTO lto = lao.like_pickUp(map);
+				lao.close();
+				req.setAttribute("lto", lto);
+			} else if (session.getAttribute("naver_id") != null ){			
+				map.put("id", session.getAttribute("naver_id"));
+				System.out.println(map.get("id"));
+				// 출력 값 담을 List 생성 및 담기
+				likeTableDTO lto = lao.like_pickUp(map);
+				lao.close();
+				req.setAttribute("lto", lto);
+			}
+			
 		}
 		
 		// 나중에 입력된 파일 정보로 무언가 할 때 사용...
