@@ -136,7 +136,8 @@ public class LoginController extends HttpServlet{
 	        	e.printStackTrace();
 	        }
 	    }
-	    req.getRequestDispatcher("../petplanet.do").forward(req, resp);
+//	    req.getRequestDispatcher("../petplanet.do").forward(req, resp);
+	    resp.sendRedirect("../petplanet.do");
 	}
 	
 	@Override
